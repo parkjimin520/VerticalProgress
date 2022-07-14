@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    app:umanoPanelHeight="20dp"
+    app:umanoShadowHeight="4dp">
+    
+    //메인화면
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/play_toolbar"/>
+
+        <ImageView
+            android:id="@+id/figureImage"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"/>
+        <TextView
+            android:id="@+id/keyword"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageButton
+                android:id="@+id/play_button"
+                android:text="재생"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/play_icon"
+                android:adjustViewBounds="true"
+                android:background="#FFFFFF"
+                android:scaleType="fitXY"/>
+            <ImageButton
+                android:layout_marginLeft="10dp"
+                android:id="@+id/pause_button"
+                android:text="일시정지"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pause_icon"
+                android:adjustViewBounds="true"
+                android:background="#FFFFFF"
+                android:scaleType="fitXY"/>
+            <ImageButton
+                android:layout_marginLeft="10dp"
+                android:id="@+id/stop_button"
+                android:text="멈춤"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/stop_icon"
+                android:adjustViewBounds="true"
+                android:background="#FFFFFF"
+                android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:background="#DDD8D8">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/timeText"
+                    android:textSize="10dp"
+                    android:text="00:00"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
+                <SeekBar
+                    android:id="@+id/seekbar"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:max="50"
+                    android:progress="0"
+                    android:rotation="-270"
+                    android:translationX="-120dp" />
+                <!-- 어느정도 seekbar의 width길이를 확보해야 해서
+                translationX로 조정-->
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
