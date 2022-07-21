@@ -25,7 +25,7 @@ public class MyLog extends Application {
 
     //필터링한 Log저장
     public void inputLog(String text) {
-        File logFile = new File(logDirectory, "Log_ImgSummary.txt"); //파일명
+        File logFile = new File(logDirectory, "Log_T2_ImgSummary.txt"); //파일명
 
         if (!logFile.exists()) { //없으면 파일 생성
             try {

@@ -2,10 +2,15 @@ package com.example.verticalprogress;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,13 +18,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     //타이머 시간 값을 저장할 변수
     private long baseTime,pauseTime;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new VoiceList("recording1",R.drawable.lush_wordcloud));
         arrayList.add(new VoiceList("recording2",R.drawable.lush_wordcloud));
         arrayList.add(new VoiceList("recording3",R.drawable.lush_wordcloud));
-        arrayList.add(new VoiceList("recording4",R.drawable.lush_wordcloud));
 
         mainAdapter = new MainAdapter(arrayList);
 

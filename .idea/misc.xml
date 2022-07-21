@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/layout/activity_main.xml" value="0.42481884057971014" />
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/layout/activity_play.xml" value="0.44648829431438125" />
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/layout/item.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/layout/pid.xml" value="0.1" />
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/layout/play_toolbar.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/parkj/StudioProjects/VerticalProgress/app/src/main/res/menu/menu_main.xml" value="0.5541666666666667" />
         <entry key="app/src/main/res/drawable/custom_progress.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />
         <entry key="app/src/main/res/layout/activity_play.xml" value="0.15070921985815602" />

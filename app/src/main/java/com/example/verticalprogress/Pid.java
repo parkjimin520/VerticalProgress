@@ -2,8 +2,10 @@ package com.example.verticalprogress;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -24,11 +26,9 @@ public class Pid extends AppCompatActivity {
 
         Button button = (Button)findViewById(R.id.button);
 
-        RadioGroup Task_group = (RadioGroup)findViewById(R.id.Task_group);
-        RadioGroup PID_group = (RadioGroup)findViewById(R.id.PID_group);
         RadioGroup Study_group = (RadioGroup)findViewById(R.id.Study_group);
-        RadioGroup Condition_group = (RadioGroup)findViewById(R.id.Condition2_group);
-
+//        RadioGroup PID_group = (RadioGroup)findViewById(R.id.PID_group);
+        EditText PID_group = (EditText) findViewById(R.id.PID_group);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,26 +39,19 @@ public class Pid extends AppCompatActivity {
                 int study = Study_group.getCheckedRadioButtonId();
                 RadioButton radio_study = (RadioButton) findViewById(study);
                 info_study = radio_study.getText().toString();
-//                ((MyLog)MyLog.mContext).inputLog(radio_study.getText().toString());
 
-                int pid = PID_group.getCheckedRadioButtonId();
-                RadioButton radio_pid = (RadioButton) findViewById(pid);
-                info_pid = "P"+radio_pid.getText().toString();
-//                ((MyLog)MyLog.mContext).inputLog("P"+radio_pid.getText().toString());
+//                int pid = PID_group.getCheckedRadioButtonId();
+//                RadioButton radio_pid = (RadioButton) findViewById(pid);
+//                info_pid = "P"+radio_pid.getText().toString();
 
-                int task = Task_group.getCheckedRadioButtonId();
-                RadioButton radio_task = (RadioButton) findViewById(task);
-                info_task = radio_task.getText().toString();
-//                ((MyLog)MyLog.mContext).inputLog(radio_task.getText().toString());
+                info_pid = "P"+PID_group.getText().toString();
 
-                int condition = Condition_group.getCheckedRadioButtonId();
-                RadioButton radio_condition = (RadioButton) findViewById(condition);
-                info_condition = radio_condition.getText().toString();
-//                ((MyLog)MyLog.mContext).inputLog(radio_condition.getText().toString());
+                info_task = "Task2";
+
+                info_condition = "Img+Summary";
 
                 ((MyLog)MyLog.mContext).inputLog("UserStudy|PID|TaskNum|Condition|Event|Remarks");
                 ((MyLog)MyLog.mContext).inputLog(info_study+"|"+info_pid+"|"+info_task+"|"+info_condition);
-
 
             }
         });

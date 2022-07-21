@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"/>
 
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -67,6 +66,13 @@
                 android:adjustViewBounds="true"
                 android:background="#FFFFFF"
                 android:scaleType="fitXY"/>
+
+            <Button
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:text="시작" />
 
         </LinearLayout>
 
