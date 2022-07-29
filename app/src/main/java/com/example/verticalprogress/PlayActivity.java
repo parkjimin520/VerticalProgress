@@ -51,6 +51,7 @@ import java.text.SimpleDateFormat;
 //유퀴즈 러쉬
 public class PlayActivity extends AppCompatActivity {
 
+
     int Time; //이미지 매핑 범위
 
     MediaPlayer mp;
@@ -67,12 +68,13 @@ public class PlayActivity extends AppCompatActivity {
 
 
     //자동 스크롤
+    ScrollView scrollView;
     ObjectAnimator AutoScroll;
     boolean touchScroll; //ScrollView를 직접 터치했는지의 여부
 
     //타이머
+    private Menu menu;
     String recTime;
-    Button timer;
     //상태를 표시하는 '상수' 지정
     //- 각각의 숫자는 독립적인 개별 '상태' 의미
     public static final int INIT = 0;//처음
@@ -87,6 +89,7 @@ public class PlayActivity extends AppCompatActivity {
     private long baseTime,pauseTime;
 
     TextView timeText;//프로그레스바 타임
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -105,10 +108,10 @@ public class PlayActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textView);
         ImageView figureImage = (ImageView) findViewById(R.id.figureImage);
         TextView keyword = (TextView) findViewById(R.id.keyword);
-        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
 
         //음원
-        mp = MediaPlayer.create(PlayActivity.this, R.raw.youquiz_lush_mp);
+        mp = MediaPlayer.create(PlayActivity.this, R.raw.youquiz_airport_mp);
 
         //상단바----------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -125,13 +128,9 @@ public class PlayActivity extends AppCompatActivity {
         seekBar.setVisibility(ProgressBar.VISIBLE);
         seekBar.setMax(mp.getDuration());
 
-        //타이머
-        timer = (Button)findViewById(R.id.timer);
-
-
         //txt추출 : TimeStamp, 내용 나눠서 저장
         try {
-            BufferedReader bfRead = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.youquiz_lush)));
+            BufferedReader bfRead = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.youquiz_airport)));
 
             // 한줄씩 NULL이 아닐때까지 읽어 rLine 배열에 넣는다
             while ((line = bfRead.readLine()) != null) {
@@ -244,9 +243,11 @@ public class PlayActivity extends AppCompatActivity {
 
                 try {
                     mp.stop();
+                    seekBar.setMax(0);
                     seekBar.setProgress(0);
                     timeText.setText("00:00");
                     mp.prepare();
+                    scrollView.scrollTo(0,0);
                 } catch (IOException e) {
                 }
             }
@@ -288,47 +289,22 @@ public class PlayActivity extends AppCompatActivity {
                 Time = Integer.parseInt(timeee);//0000
 
                 //이미지 매핑
-                if(Time>=0 && Time<110) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.lushshop));
-                    keyword.setText("러쉬 매장에서의 경험 간증글이 화제가 되었다.");
-                }else if(Time>=110 && Time<150) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.advice));
-                    keyword.setText("머리 감고 가도록 적극적으로 권유한다.");
-                }else if(Time>=150 && Time<259) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.customer));
-                    keyword.setText("손님과 공감하고 나누면서 친해진다.");
-                }else if(Time>=260 && Time<339) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.enfpkorean));
-                    keyword.setText("enfp(엔프피) 스타일이다.");
-                }else if(Time>=343 && Time<438) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.smoothie));
-                    keyword.setText("스무디왕에서 아르바이트를 했는데 전국 매장 컴피티션에서 1등을 했다.");
-                }else if(Time>=445 && Time<503) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.firstprize));
-                    keyword.setText(" 전세계 매장 매출 1등을 여러번 했다.");
-                }else if(Time>=522 && Time<533) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.difficulty));
-                    keyword.setText("매니저로서 매장을 관리하며 어려움은 있다.");
-                }else if(Time>=534 && Time<601) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.enjoy));
-                    keyword.setText("오늘 하루도 즐겁게 일하자는 나만의 슬로건을 가지고 있다.");
-                }else if(Time>=602 && Time<632) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.goodboss));
-                    keyword.setText("서비스직으로 감정적으로 힘들 때가 있었지만 다독여주는 좋은 직장 상사가 계셨다.");
-                }else if(Time>=704 && Time<749) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.children));
-                    keyword.setText("어린 자녀를 둔 고객이 걱정없이 편하게 쇼핑할수 있도록 아이 놀아주며 케어 한다.");
-                }else if(Time>=750 && Time<857) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.remain_single));
-                    keyword.setText("비혼 선언하는 임직원에게 축의금과 유급휴가를 주는 비혼식 제도가 있다.");
-                }else if(Time>=859 && Time<915) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.dog));
-                    keyword.setText("반려동물을 키우면 반려동물 수당을 준다.");
-                }else if(Time>=922 && Time<1005) {
-                    figureImage.setImageDrawable(BitmapImage(R.drawable.occupational_disease));
-                    keyword.setText("직업병이 있다.");
+                if(Time>=0 && Time<103) {
+                    figureImage.setImageResource(R.drawable.airport1);
+                    keyword.setText("대테러 대응팀에서 근무를 하기 위한 자격 조건");
+                }else if(Time>=104 && Time<220) {
+                    figureImage.setImageResource(R.drawable.airport2);
+                    keyword.setText("힘들었던 훈련에 대한 이야기");
+                }else if(Time>=221 && Time<327) {
+                    figureImage.setImageResource(R.drawable.airport3);
+                    keyword.setText("폭발물 처리 출동 나간 사건 중에 기억나는 것");
+                }else if(Time>=328 && Time<411) {
+                    figureImage.setImageResource(R.drawable.airport4);
+                    keyword.setText("방치가방 출동을 나갔는데 압력 밥솥 안에 기저귀가 있었다.");
+                }else if(Time>=412 && Time<513) {
+                    figureImage.setImageResource(R.drawable.airport5);
+                    keyword.setText("항공기에 테러하겠다는 협박메일을 받았던 상황");
                 }
-
 
 
             }
@@ -381,90 +357,20 @@ public class PlayActivity extends AppCompatActivity {
 
         }
 
-        timer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startTimer();
-
-                //Play되도록
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
-
-                mp.start();
-
-                //노래 진행 시간
-                new Thread() {
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("mm:ss");
-
-                    public void run() {
-                        seekBar.setMax(mp.getDuration());
-
-                        while (mp.isPlaying()) {
-                            //위젯변경위한 Ui쓰레드
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    seekBar.setProgress(mp.getCurrentPosition());
-                                    timeText.setText(timeFormat.format(mp.getCurrentPosition()));
-                                }
-                            });
-                            SystemClock.sleep(200); //0.2초마다 진행상태 변경
-                        }
-                    }
-                }.start();
-
-                touchScroll = false;
-            }
-        });
-
     } //onCreate
 
 
     //키보드 키로 Log타이머 + 재생 하기
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if(event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-                Toast.makeText(this, "볼륨 누름", Toast.LENGTH_SHORT).show();
-            } else if (keyCode == KeyEvent.KEYCODE_SPACE) {
-                Toast.makeText(this, "space 누름", Toast.LENGTH_SHORT).show();
-            }else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-                Toast.makeText(this, "KEYCODE_DPAD_DOWN 누름", Toast.LENGTH_SHORT).show();
-            }else if (keyCode == KeyEvent.KEYCODE_0) {
-                Toast.makeText(this, "KEYCODE_0 누름", Toast.LENGTH_SHORT).show();
-                startTimer();
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
-
-                mp.start();
-
-                //노래 진행 시간
-                new Thread() {
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("mm:ss");
-
-                    public void run() {
-                        seekBar.setMax(mp.getDuration());
-
-                        while (mp.isPlaying()) {
-                            //위젯변경위한 Ui쓰레드
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    seekBar.setProgress(mp.getCurrentPosition());
-                                    timeText.setText(timeFormat.format(mp.getCurrentPosition()));
-                                }
-                            });
-                            SystemClock.sleep(200); //0.2초마다 진행상태 변경
-                        }
-                    }
-                }.start();
-
-                touchScroll = false;
+          if (keyCode == KeyEvent.KEYCODE_0) {
+              startTimer();
             }
         }
         return super.onKeyDown(keyCode, event);
     }
+
 
 
     @Override
@@ -494,32 +400,51 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    //상단바 back버튼
+    //    //상단바 back버튼
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        //노래 계속 재생돼서 추가
+//        if(mp.isPlaying()){
+//            mp.stop();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
+
+    //상단바 메뉴
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
+
+        return true;
+    }
+
+    //'설정' 누를 시
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //노래 계속 재생돼서 추가
         if(mp.isPlaying()){
             mp.stop();
         }
+
+        switch (item.getItemId()){
+            case R.id.menu_settings:
+                Intent settingIntent = new Intent(getApplicationContext(),Pid.class);
+                startActivity(settingIntent);
+                break;
+            case R.id.menu_timer:
+                startTimer();
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
 
-    public BitmapDrawable BitmapImage(int image)
-    {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),image);
-        Bitmap resize = Bitmap.createScaledBitmap(bitmap,200,150,true);
-
-
-        BitmapDrawable drawable = new BitmapDrawable(getResources(),resize);
-
-        return drawable;
-    }
-
-
-
-    //타이머
+    //타이머 상단바
     private void startTimer(){
+        MenuItem menu_timer = menu.findItem(R.id.menu_timer);
 
         switch (status){
             case INIT:
@@ -528,12 +453,39 @@ public class PlayActivity extends AppCompatActivity {
 
                 //핸들러 실행
                 handler.sendEmptyMessage(0);
-                timer.setText("멈춤");
+                menu_timer.setTitle("멈춤");
 
                 //상태 변환
                 status = RUN;
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Start");
+                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
+                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
+
+                mp.start();
+
+                //노래 진행 시간
+                new Thread() {
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("mm:ss");
+
+                    public void run() {
+                        seekBar.setMax(mp.getDuration());
+
+                        while (mp.isPlaying()) {
+                            //위젯변경위한 Ui쓰레드
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    seekBar.setProgress(mp.getCurrentPosition());
+                                    timeText.setText(timeFormat.format(mp.getCurrentPosition()));
+                                }
+                            });
+                            SystemClock.sleep(200); //0.2초마다 진행상태 변경
+                        }
+                    }
+                }.start();
+
+                touchScroll = false;
 
                 break;
             case RUN:
@@ -542,7 +494,7 @@ public class PlayActivity extends AppCompatActivity {
 
                 //정지 시간 체크
                 pauseTime = SystemClock.elapsedRealtime();
-                timer.setText("시작");
+                menu_timer.setTitle("시작");
                 //상태변환
                 status = PAUSE;
 
@@ -551,6 +503,20 @@ public class PlayActivity extends AppCompatActivity {
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Stop"+"|"+getTime());
 
+
+                //재생 스탑
+                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
+                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_pauseButton");
+                try {
+                    mp.stop();
+                    seekBar.setMax(0);
+                    seekBar.setProgress(0);
+                    timeText.setText("00:00");
+                    mp.prepare();
+                    scrollView.scrollTo(0,0);
+
+                } catch (IOException e) {
+                }
 
                 baseTime = 0;
                 pauseTime = 0;
@@ -562,13 +528,14 @@ public class PlayActivity extends AppCompatActivity {
 
                 handler.sendEmptyMessage(0);
 
-                timer.setText("멈춤");
+                menu_timer.setTitle("멈춤");
 
                 status = RUN;
 
         }
 
     }
+
 
     //경과된 시간 체크
     private String getTime(){
@@ -592,7 +559,6 @@ public class PlayActivity extends AppCompatActivity {
             handler.sendEmptyMessage(0);
         }
     };
-
 
 
 }

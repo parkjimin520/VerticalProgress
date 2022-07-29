@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     private Menu menu;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainAdapter = new MainAdapter(arrayList);
 
+
         //item별 클릭 처리
         mainAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
             @Override
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (pos == 1) {
                     final VoiceList item = arrayList.get(pos);
 
-                    Intent intent = new Intent(getApplicationContext(),PlayActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(getApplicationContext(),PlayActivity2.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("제목",item.getTitle()); //title값 보냄
                     getApplicationContext().startActivity(intent);
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }  else if (pos == 2) {
                     final VoiceList item = arrayList.get(pos);
 
-                    Intent intent = new Intent(getApplicationContext(),PlayActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(getApplicationContext(),PlayActivity3.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("제목",item.getTitle()); //title값 보냄
                     getApplicationContext().startActivity(intent);
 

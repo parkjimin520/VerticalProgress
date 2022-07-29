@@ -40,10 +40,6 @@ public class Pid extends AppCompatActivity {
                 RadioButton radio_study = (RadioButton) findViewById(study);
                 info_study = radio_study.getText().toString();
 
-//                int pid = PID_group.getCheckedRadioButtonId();
-//                RadioButton radio_pid = (RadioButton) findViewById(pid);
-//                info_pid = "P"+radio_pid.getText().toString();
-
                 info_pid = "P"+PID_group.getText().toString();
 
                 info_task = "Task2";
