@@ -5,32 +5,36 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:sothree="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="bottom"
-    app:umanoPanelHeight="20dp"
-    app:umanoShadowHeight="4dp">
+    android:orientation="vertical">
 
     //메인화면
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/play_toolbar"/>
 
-        <ImageView
-            android:id="@+id/figureImage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/keyword"
-            android:textSize="15dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/figureImage"
+                android:layout_width="190dp"
+                android:layout_height="190dp" />
+
+            <TextView
+                android:id="@+id/keyword"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -67,15 +71,6 @@
                 android:adjustViewBounds="true"
                 android:background="#FFFFFF"
                 android:scaleType="fitXY"/>
-
-<!--            <Button-->
-<!--                android:id="@+id/timer"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="150dp"-->
-<!--                android:text="시작"-->
-<!--                android:visibility="invisible"/>-->
-
         </LinearLayout>
 
 
@@ -98,7 +93,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/timeText"
                     android:textSize="10dp"
@@ -110,24 +104,15 @@
 
                 <SeekBar
                     android:id="@+id/seekbar"
-                    android:layout_width="300dp"
+                    android:layout_width="400dp"
                     android:layout_height="match_parent"
                     android:max="50"
                     android:progress="0"
                     android:rotation="-270"
-                    android:translationX="-120dp" />
+                    android:translationX="-170dp" />
                 <!-- 어느정도 seekbar의 width길이를 확보해야 해서
                 translationX로 조정-->
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
-
-
     </LinearLayout>
-
-
 </LinearLayout>

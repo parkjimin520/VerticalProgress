@@ -74,6 +74,7 @@ public class PlayActivity extends AppCompatActivity {
 
     //타이머
     private Menu menu;
+//    MenuItem menu_timer = menu.findItem(R.id.menu_timer);
     String recTime;
     //상태를 표시하는 '상수' 지정
     //- 각각의 숫자는 독립적인 개별 '상태' 의미
@@ -189,8 +190,19 @@ public class PlayActivity extends AppCompatActivity {
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
 
-                mp.start();
+                //00:00초로
+                try {
+                    mp.stop();
+                    seekBar.setMax(0);
+                    seekBar.setProgress(0);
+                    timeText.setText("00:00");
+                    mp.prepare();
+                    scrollView.scrollTo(0,0);
 
+                } catch (IOException e) {
+                }
+
+                mp.start();
                 //노래 진행 시간
                 new Thread() {
                     SimpleDateFormat timeFormat = new SimpleDateFormat("mm:ss");
@@ -214,6 +226,8 @@ public class PlayActivity extends AppCompatActivity {
 
                 touchScroll = false;
 
+                startTimer();
+
             }
         });
 
@@ -227,7 +241,6 @@ public class PlayActivity extends AppCompatActivity {
 
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_pauseButton");
-
 
             }
         });
@@ -354,7 +367,6 @@ public class PlayActivity extends AppCompatActivity {
         if(intent.hasExtra("제목")){
             String titleIntent = intent.getStringExtra("제목");
             getSupportActionBar().setTitle(titleIntent);
-
         }
 
     } //onCreate
@@ -400,7 +412,7 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    //    //상단바 back버튼
+    //상단바 back버튼
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        //노래 계속 재생돼서 추가
@@ -459,9 +471,6 @@ public class PlayActivity extends AppCompatActivity {
                 status = RUN;
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Start");
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
-
                 mp.start();
 
                 //노래 진행 시간
@@ -502,21 +511,6 @@ public class PlayActivity extends AppCompatActivity {
                 Log.i("test","타이머 == "+getTime());
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Stop"+"|"+getTime());
-
-
-                //재생 스탑
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_pauseButton");
-                try {
-                    mp.stop();
-                    seekBar.setMax(0);
-                    seekBar.setProgress(0);
-                    timeText.setText("00:00");
-                    mp.prepare();
-                    scrollView.scrollTo(0,0);
-
-                } catch (IOException e) {
-                }
 
                 baseTime = 0;
                 pauseTime = 0;
