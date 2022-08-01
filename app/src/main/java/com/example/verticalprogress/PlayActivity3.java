@@ -189,8 +189,19 @@ public class PlayActivity3 extends AppCompatActivity {
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
 
-                mp.start();
+                //00:00초로
+                try {
+                    mp.stop();
+                    seekBar.setMax(0);
+                    seekBar.setProgress(0);
+                    timeText.setText("00:00");
+                    mp.prepare();
+                    scrollView.scrollTo(0,0);
 
+                } catch (IOException e) {
+                }
+
+                mp.start();
                 //노래 진행 시간
                 new Thread() {
                     SimpleDateFormat timeFormat = new SimpleDateFormat("mm:ss");
@@ -459,9 +470,6 @@ public class PlayActivity3 extends AppCompatActivity {
                 status = RUN;
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Start");
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_playButton");
-
                 mp.start();
 
                 //노래 진행 시간
@@ -502,21 +510,6 @@ public class PlayActivity3 extends AppCompatActivity {
                 Log.i("test","타이머 == "+getTime());
                 ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
                         +((Pid)Pid.context_pid).info_task +"|"+((Pid)Pid.context_pid).info_condition+"|"+"click_timerButton_Stop"+"|"+getTime());
-
-
-                //재생 스탑
-                ((MyLog)MyLog.mContext).inputLog(((Pid)Pid.context_pid).info_study+"|"+((Pid)Pid.context_pid).info_pid+"|"
-                        +((Pid)Pid.context_pid).info_task + "|"+((Pid)Pid.context_pid).info_condition+"|"+"click_pauseButton");
-                try {
-                    mp.stop();
-                    seekBar.setMax(0);
-                    seekBar.setProgress(0);
-                    timeText.setText("00:00");
-                    mp.prepare();
-                    scrollView.scrollTo(0,0);
-
-                } catch (IOException e) {
-                }
 
                 baseTime = 0;
                 pauseTime = 0;

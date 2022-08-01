@@ -376,8 +376,8 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(event.getAction() == KeyEvent.ACTION_DOWN) {
-          if (keyCode == KeyEvent.KEYCODE_0) {
-              startTimer();
+            if (keyCode == KeyEvent.KEYCODE_0) {
+                startTimer();
             }
         }
         return super.onKeyDown(keyCode, event);
